@@ -1,0 +1,42 @@
+
+.wrap-banner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:80vh;
+  background:url(https://i0.wp.com/mystayrental.com/wp-content/uploads/2024/03/Elevating-Experiences-with-Luxury-Vacation-Homes-1.jpg?ssl=1);
+  background-size: cover;
+  background-position:center;
+  border-radius: 15px;
+  margin: 0px 0px 50px 110px;
+  padding: 0px 90px;
+  width: 80%;
+}
+
+
+.wrap-banner p {
+  position: absolute;
+  bottom: 15%;
+  font-size: 2.5rem;
+  font-weight: 400;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.btn {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: purple; ;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 32px;
+  text-align: center;
+}

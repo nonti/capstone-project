@@ -2,9 +2,9 @@ import React from 'react'
 import './Banner.css';
 const Banner = () => {
   return (
-    <div className='wrap-banner'>
-      <p>Not sure where to go? Perfect.</p>
-      <button className='btn'>I'm flexible</button>
+    <div className='photo1'>
+      <div>Not sure where to go? Perfect.</div>
+      <button>I'm flexible</button>
     </div>
   )
 }

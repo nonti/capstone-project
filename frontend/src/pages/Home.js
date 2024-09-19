@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../components/Card/Card";
 import "./Home.css";
 import Banner from "../components/Banner/Banner";
+import GiftCard from '../assets/cards.png';
 const Home = () => {
   return (
     <div className="home">
@@ -30,8 +31,13 @@ const Home = () => {
           title="Hyde Park Hotel"
           distance="34 km away"
         />
-      </div>
-
+        <Card
+          src="https://images.trvl-media.com/lodging/6000000/5330000/5329300/5329286/565d0b86.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill"
+          title="Port Elizabeth Hotel"
+          distance="45 km away"
+        />
+      </div>    
+      
       <div className="home-section">
         <p className="home-heading">Discover Airbnb Experiences</p>
       </div>
@@ -55,8 +61,14 @@ const Home = () => {
           <button className="btn-learn">Learn more</button>
         </div>
         <div className="gift-card-img">
-          <img src="https://reward.iua.bz/wp-content/uploads/2023/02/airbnb.png" alt="Airbnb Gift Cards" />
+          <img src={GiftCard} alt="Airbnb Gift Cards" />
         </div>        
+      </div>
+      <div className="home-section">
+      <div class="questions">
+        <div class="que">Questions <br/> about <br/> hosting?</div>
+        <button>Ask a Superhost</button>
+    </div>
       </div>
     </div>
   );

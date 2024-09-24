@@ -1,4 +1,4 @@
-.popup {
+.pop {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -9,8 +9,8 @@
   background-color: rgba(0,0,0,0.4);
   }
   
-  .popup-inner {
-  background: #6900fa;
+  .pop {
+  background: transparent;
   opacity: 5;
   backdrop-filter: blur(35px);
   position: absolute;
@@ -20,38 +20,47 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  width: 25%;
-  height: 45%;
+  width: 75%;
+  height: 65%;
+  justify-content: center;
   }
   
-  .popup-inner h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 36px;
-  text-align: center;
-  color: var(--white);
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .pop h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-align: center;
+    color: blue;
   }
   
-  .popup-inner label {
-  display: flex;
-  margin-top: 40px;
-  padding: 10px;
-  border: 1px solid var(--white);
-  border-radius: 35px;
+  .pop label {
+    background-color: var(--theme);
+    display: flex;
+    margin-top: 10px;
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 35px;
   }
   
-  .popup-inner input {
-  width: 80%;
-  padding: 9px;
+  .pop input {
+  width: 100%;
+  padding: 1px;
   border-radius: 5px;
-  border:none;
-  margin-bottom: 10px;
-  height: 30px;
-  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-bottom: 0px;
+  background-color: var(--theme);
   }
   
-  .popup-inner button[type="submit"],
-  .popup-inner button[type="button"] {
+  .pop button[type="submit"],
+  .pop button[type="button"] {
   background-color: var(--theme);
   color: white;
   border: none;
@@ -59,38 +68,38 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  width: 50%;
+  width: 40%;
   font-size: 16px;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 5px;
   }
   
-  .popup-inner button[type="submit"]:hover,
-  .popup-inner button[type="button"]:hover {
+  .pop button[type="submit"]:hover,
+  .pop button[type="button"]:hover {
   background-color: var(--theme);
   }
   
-  .popup-inner button[type="submit"] {
+  .pop button[type="submit"] {
   margin-top: 20px;
   }
   
-  .popup-inner button[type="button"] {
+  .pop button[type="button"] {
   margin-top: 20px;
   background-color: #f44336;
   }
   
-  .popup-inner button[type="button"]:hover {
+  .pop button[type="button"]:hover {
   background-color: #da190b;
   }
   
-  .popup-inner button[type="submit"]:disabled {
+  .pop button[type="submit"]:disabled {
   background-color: #bfbfbf;
   color: #ffffff;
   cursor: not-allowed;
   }
   
-  .popup-inner button[type="button"]:disabled {
+  .pop button[type="button"]:disabled {
   background-color: #bfbfbf;
   color: #ffffff;
   cursor: not-allowed;
@@ -98,11 +107,11 @@
 
   .icons {
     color: var(--white);
-    padding: 20px 50px;
+    padding-left: 24px;
     margin-top: 10px;
   }
+
   .buttons {
     display: flex;
+    justify-content: center;
   }
-
- 

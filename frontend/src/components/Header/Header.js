@@ -22,10 +22,10 @@ const Header = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [guestCount, setGuestCount] = useState(1);
   const [showGuestPopup, setShowGuestPopup] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  // const [showLoginModal, setShowLoginModal] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
-  // const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
 
   const locations = [
@@ -86,14 +86,15 @@ const Header = () => {
   };
   
   
-
   // Close the login modal
   const closeLoginModal = () => {
-    setShowLoginModal(false);
+    // setShowLoginModal(false);
+    setIsLoginModalOpen(false);
   };
 
   const handleBecomeHostClick = () => {
-    setShowLoginModal(true);
+    // setShowLoginModal(true);
+    setIsLoginModalOpen(true);
   };
 
   return (
@@ -217,9 +218,9 @@ const Header = () => {
       )}
 
       {/* Login Modal */}
-      {showLoginModal && (
+      {isLoginModalOpen && (
         <Modal
-        isOpen={showLoginModal}
+        isOpen={isLoginModalOpen}
         onRequestClose={closeLoginModal}
         contentLabel="Login Modal"
         className="login-modal"
@@ -228,7 +229,7 @@ const Header = () => {
         <button className="close-modal" onClick={closeLoginModal}>
           X
         </button>
-        <Login /> {/* The login/registration form */}
+        <Login /> 
       </Modal>
       )}
     </>

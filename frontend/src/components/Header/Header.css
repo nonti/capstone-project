@@ -15,8 +15,9 @@
 }
 
 .header-logo {
-  height: 3rem;
+  height: 5rem;
   padding: 0.5rem 0 0 50px;
+
 }
 
 .header-text {
@@ -221,8 +222,8 @@ outline: none;
 color: white;
 cursor: pointer;
 padding: 0.6rem;
-margin-left: 10rem;
-margin-top: 0.6rem;
+margin-left: 9.5rem;
+margin-top: 0.88rem;
 margin-bottom: 0.6rem;
 
 }
@@ -262,7 +263,6 @@ outline: none;
   padding: 0.35rem 1rem; 
   margin-left: 150px;
 }
-
 
 .guest-popup {
   position: absolute; 

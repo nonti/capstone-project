@@ -22,7 +22,6 @@ const Header = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [guestCount, setGuestCount] = useState(1);
   const [showGuestPopup, setShowGuestPopup] = useState(false);
-  // const [showLoginModal, setShowLoginModal] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -81,19 +80,15 @@ const Header = () => {
         checkOut: checkOutDate.toISOString(),
         guests: guestCount,
       }).toString();
-      navigate(`/search-standard?${params}`);
+      navigate(`/search-?${params}`);
     }
   };
   
-  
-  // Close the login modal
   const closeLoginModal = () => {
-    // setShowLoginModal(false);
     setIsLoginModalOpen(false);
   };
 
   const handleBecomeHostClick = () => {
-    // setShowLoginModal(true);
     setIsLoginModalOpen(true);
   };
 

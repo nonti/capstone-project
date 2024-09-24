@@ -1,9 +1,9 @@
 import React from 'react';
-import './StandardSearch.css';
+import './SearchResult.css';
 import { Button } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
-import SearchResult from '../SearchResult';
+import SearchResult from './SearchResult';
 import { useLocation } from 'react-router-dom';
 
 const SearchPage = () => {

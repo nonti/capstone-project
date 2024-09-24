@@ -7,7 +7,6 @@ import Expriences from '../components/Experiences/Expriences'
 import GiftCard from '../components/GiftCard/GiftCard'
 import Host from '../components/Host/Host'
 import Inspiration from '../components/Inspiration/Inspiration'
-import Footer from '../components/Footer/Footer'
 const Home = () => {
   return (
     <div>
@@ -18,7 +17,6 @@ const Home = () => {
       <GiftCard/>
       <Host/>
       <Inspiration/>
-      <Footer/>
     </div>
   )
 }

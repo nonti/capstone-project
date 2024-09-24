@@ -7,7 +7,23 @@
 }
 
 
-.app {
+.home-background {
   background: #000;
-  
+  background-size: cover;
+  height: 100vh; 
+}
+
+.white-background {
+  background-color: white;
+  height: 100vh; 
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+main {
+  flex: 1; 
 }

@@ -1,1 +1,14 @@
 
+:root {
+  --black: #000;
+  --grey: #ddd;
+  --font-grey: #717171;
+  --white: #ffffff;
+  --theme: #ff385c;
+  --light-grey: #f7f7f7;
+  --dark-grey: #A9A9A9;
+}
+
+body {
+  background-color: #fff;
+}

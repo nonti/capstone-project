@@ -1,0 +1,101 @@
+.header-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: sticky;
+  top: 0;
+  background-color: white; /* Set your desired background color */
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+  z-index: 10; /* Ensure it stays above other elements */
+}
+
+.header-logo {
+  height: 2rem;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.profile-div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--grey);
+  border-radius: 3rem;
+  padding: 0.35rem;
+  color: var(--font-grey);
+}
+
+
+.button-container > button {
+  border-radius: 30px;
+  text-transform: inherit;
+  margin: 5px;
+  border: 1px solid var(--grey);
+  color: #000;
+
+}
+
+hr {
+  border: 1px solid var(--grey);
+}
+.img-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+
+
+.img-content > img {
+  width: 200;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.update {
+  border-radius: 5px;
+  background-color: #6900fa;
+  text-transform: inherit;
+  color: #fff;
+  height: 30px;
+  margin: 5px;
+  width: 100%;
+} 
+
+.delete{
+  border-radius: 5px;
+  background-color: #ff385c;
+  text-transform: inherit;
+  color: #fff;
+  height: 30px;
+  margin: 5px;
+  width: 100%;
+}
+.hotel-list {
+  padding: 35px 0px;
+  color: var(--font-grey);
+  font-size: 1.2rem;
+}
+
+table {
+  padding: 10px 0px 0px 20px !important;
+  width: 80%;
+  border-collapse: collapse;
+  border: var(--grey);
+}
+
+th, td {
+  height: 50px;
+  text-align: left;
+  padding: 0px 10px;
+  font-size: 1.2rem;
+  font-weight: 400;
+}

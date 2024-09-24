@@ -4,9 +4,11 @@ import Home from './pages/Home';
 import StandardSearch from './components/SearchResult/standard/StandardSearch';
 import AdminPage from './pages/AdminPage';
 import Footer from './components/Footer/Footer';
+import { useState } from 'react';
 function App() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
 
   return (
     <div className={isHomePage ? 'home-background' : 'white-background'}>
@@ -14,7 +16,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path="/search-luxe" element={<StandardSearch/>} />
         <Route path="/search-standard" element={<StandardSearch/>} />
-       <Route path="/admin" element={<AdminPage />} />      
+       <Route path="/admin" element={<AdminPage  selected={selectedAmenities} onChange={setSelectedAmenities}/>} />      
        </Routes>
       <Footer/>
 

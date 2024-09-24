@@ -13,6 +13,7 @@ import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import Login from "../../pages/Login";
+import Modal from "react-modal";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,6 +25,8 @@ const Header = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
+  // const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
 
   const locations = [
     "All",
@@ -81,9 +84,16 @@ const Header = () => {
       navigate(`/search-standard?${params}`);
     }
   };
+  
+  
+
+  // Close the login modal
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
 
   const handleBecomeHostClick = () => {
-    setShowLoginModal((prev) => !prev);
+    setShowLoginModal(true);
   };
 
   return (
@@ -208,12 +218,18 @@ const Header = () => {
 
       {/* Login Modal */}
       {showLoginModal && (
-        <div className="login-modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleBecomeHostClick}>&times;</span>
-            <Login />
-          </div>
-        </div>
+        <Modal
+        isOpen={showLoginModal}
+        onRequestClose={closeLoginModal}
+        contentLabel="Login Modal"
+        className="login-modal"
+        overlayClassName="login-modal-overlay"
+      >
+        <button className="close-modal" onClick={closeLoginModal}>
+          X
+        </button>
+        <Login /> {/* The login/registration form */}
+      </Modal>
       )}
     </>
   );

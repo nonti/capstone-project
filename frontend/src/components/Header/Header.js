@@ -112,9 +112,9 @@ const Header = () => {
         ) : (
           <div className="search-bar-container">
             <div className="search-bar">
-              <div className="search-bar-text">Anywhere</div>
-              <div className="search-bar-text">Add dates</div>
-              <div className="search-bar-text2">Add guests</div>
+              <div className="search-bar-text">{isResultPage ? (location === 'All' ? 'All locations': location): 'Anywhere'}</div>
+              <div className="search-bar-text">{isResultPage ? (checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`: 'Add dates') : 'Add dates'}</div>
+              <div className="search-bar-text2"> {guestCount} Guest{guestCount > 1 ? 's' : ''}</div>
               <div className="search-icon-div">
                 <SearchRoundedIcon className="search-icon" />
               </div>

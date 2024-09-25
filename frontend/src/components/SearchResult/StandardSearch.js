@@ -11,21 +11,11 @@ const SearchPage = () => {
   const query = new URLSearchParams(location.search);
   
   const searchLocation = query.get('location') || 'Your Destination';
-  const checkInDate = new Date(query.get('checkIn')).toLocaleDateString() || 'Check-in Date';
-  const checkOutDate = new Date(query.get('checkOut')).toLocaleDateString() || 'Check-out Date';
-  const guestCount = query.get('guests') || 1;
+  
 
   return (
     <>
     <div className='searchPage'>
-      <div className='search-page-results-text'>
-        {`200+ stays in ${searchLocation}`}
-      </div>
-      <div className='search-page-info'>
-        <p>{`Check-in: ${checkInDate}`}</p>
-        <p>{`Check-out: ${checkOutDate}`}</p>
-        <p>{`Guests: ${guestCount}`}</p>
-      </div>
       <div className='search-page-info-standard'>
         <Button variant="outlined">Price <KeyboardArrowDownOutlinedIcon /></Button>
         <Button variant='outlined'>Type of place <KeyboardArrowDownOutlinedIcon /></Button>
@@ -40,6 +30,12 @@ const SearchPage = () => {
         <Button variant='outlined'>Dryer</Button>
         <Button variant='outlined'><TuneOutlinedIcon />Filter</Button>
       </div>
+      <hr/>
+      <div className='search-page-results-text'>
+        {`200+ stays in ${searchLocation}`}
+      </div>
+      
+      <hr/>
       {/* Replace with actual search results */}
       <SearchResult
         image='https://a0.muscache.com/im/pictures/miso/Hosting-872294280468339009/original/9ac867f1-ec81-498b-b356-4b52c402fb75.jpeg?im_w=720'

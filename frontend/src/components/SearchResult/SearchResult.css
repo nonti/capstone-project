@@ -11,6 +11,10 @@
   opacity: 0.8;
 }
 
+.search-page-results-text{
+  padding: 40px;
+}
+
 .search-result > img {
   height: 200px;
   width: 350px;

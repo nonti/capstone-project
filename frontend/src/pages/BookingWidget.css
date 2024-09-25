@@ -1,0 +1,95 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Booking Widget Container */
+.bg-white {
+  background-color: white;
+}
+
+.shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Price Styles */
+.text-2xl {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* Form Styles */
+.border {
+  border: 1px solid #ddd;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+/* Input Styles */
+input[type="date"],
+input[type="number"],
+input[type="text"],
+input[type="tel"] {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Label Styles */
+label {
+  font-weight: bold;
+}
+
+/* Button Styles */
+.primary {
+  background-color: #ff385c; /* Primary color */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary:hover {
+  background-color: #e63946; /* Darker shade on hover */
+}
+
+.primary span {
+  margin-left: 0.5rem; /* Space between text and price */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .flex {
+    flex-direction: column; /* Stack inputs on small screens */
+  }
+
+  .border {
+    margin-bottom: 1rem; /* Space between stacked inputs */
+  }
+}

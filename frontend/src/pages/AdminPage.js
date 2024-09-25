@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import "./AdminPage.css";
-import logo from "../assets/svg/logo-s.svg";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { Button } from "@mui/material";
 import Reservations from "./Reservations";
 import CreateListingForm from "./CreateListingForm";
@@ -35,15 +32,7 @@ const AdminPage = ({selected, onChange}) => {
 
    return (
     <>
-      <div className="header-admin">
-        <img src={logo} alt="logo" className="header-logo" />
-        <div className="profile-container">
-          <div className="profile-div">
-            <MenuRoundedIcon />
-            <AccountCircleIcon />
-          </div>
-        </div>
-      </div>
+      
       <div className="button-container">
         <Button variant="outlined" onClick={handleShowReservations}>
           View Reservation

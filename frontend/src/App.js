@@ -6,6 +6,8 @@ import AdminPage from './pages/AdminPage';
 import Footer from './components/Footer/Footer';
 import { useState } from 'react';
 import Listing from './pages/Listing';
+import Header from './components/Header/Header'
+
 function App() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -13,6 +15,8 @@ function App() {
 
   return (
     <div className={isHomePage ? 'home-background' : 'white-background'}>
+      <Header/>
+
        <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/search-luxe" element={<StandardSearch/>} />

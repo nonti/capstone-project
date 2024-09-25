@@ -108,10 +108,30 @@
   padding: 0.35rem;
   color: #333;
   background: #fff;
+  border: 1px solid #333;
+
 }
 
 .header.scrolled .become-a-host {
   color: black; 
+}
+
+.header .become-a-host.result-page {
+  color: black; 
+}
+
+.profile-div.result-page {
+  border: 1px solid gray; 
+}
+
+.language-icon.result-page .lang-icon {
+  color: black; 
+}
+
+.profile-div {
+  border: 1px solid gray; 
+  display: flex; 
+  align-items: center;
 }
 
 .header.scrolled .lang-icon {
@@ -157,6 +177,7 @@
   width: 150px;
   color: #6a6a6a;
 }
+
 .border-divider {
   border-right: 1px solid #ddd;
   height: 32px;
@@ -228,11 +249,6 @@ margin-bottom: 0.6rem;
 
 }
 
-button {
-background: transparent;
-outline:none;
-border: none;
-}
 
 .date-picker {
 border: none;
@@ -291,9 +307,7 @@ outline: none;
   transition: background-color 0.3s; 
 }
 
-.guest-button:hover {
-  background-color: #e0e0e0;
-}
+
 
 .guest-input {
   width: 40px;

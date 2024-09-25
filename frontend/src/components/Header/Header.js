@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import {useLocation} from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/svg/logo_s.svg";
-import logo_s from "../../assets/svg/logo-s.svg";
+import logo_s from "../../assets/svg/airbnb.svg";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import LanguageIcon from "@mui/icons-material/Language";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -25,7 +26,7 @@ const Header = () => {
   const popupRef = useRef(null);
   const navigate = useNavigate();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
+  const  locationPath = useLocation().pathname;
 
   const locations = [
     "All",
@@ -80,7 +81,7 @@ const Header = () => {
         checkOut: checkOutDate.toISOString(),
         guests: guestCount,
       }).toString();
-      navigate(`/search-?${params}`);
+      navigate(`/search-standard?${params}`);
     }
   };
   
@@ -92,15 +93,17 @@ const Header = () => {
     setIsLoginModalOpen(true);
   };
 
+  const isResultPage = locationPath.includes("/search-standard");
+
   return (
     <>
-      <div className={`header ${isScrolled ? 'scrolled' : ''}`}>
+      <div className={`header ${isScrolled ? 'scrolled' : ''}`} style={{ backgroundColor: isResultPage ? 'white' : '' }}>
         <img
-          src={isScrolled ? logo_s : logo}
+          src={isResultPage ? logo_s :(isScrolled ? logo_s : logo)}
           alt="logo"
           className="header-logo"
         />
-        {!isScrolled ? (
+        {!isResultPage && !isScrolled ? (
           <div className="header-text">
             <p>Places to stay</p>
             <p>Experiences</p>
@@ -119,11 +122,11 @@ const Header = () => {
           </div>
         )}
         <div className="profile-container">
-          <div className={`become-a-host ${isScrolled ? 'scrolled' : ''}`} onClick={handleBecomeHostClick}>
+          <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} onClick={handleBecomeHostClick}>
             Become a host
           </div>
-          <div className={`become-a-host ${isScrolled ? 'scrolled' : ''}`}>
-            <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''}`} sx={{ fontSize: "1.3rem" }} />
+          <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
+            <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
           </div>
           <div className="profile-div">
             <MenuRoundedIcon />
@@ -133,7 +136,7 @@ const Header = () => {
       </div>
 
       {/* SearchBox remains hidden on scroll */}
-      {!isScrolled && (
+      {!isResultPage && !isScrolled && (
         <div className="header-bottom">
           <div className="header-search">
             <div className="search-where">
@@ -205,9 +208,9 @@ const Header = () => {
                 </div>
               </div>
             )}
-            <button className="search" onClick={handleSearch}>
+            <div className="search" onClick={handleSearch}>
               <SearchIcon className="search-icon" />
-            </button>
+            </div>
           </div>
         </div>
       )}

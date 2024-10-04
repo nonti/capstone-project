@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "../styles/Signup.css";
 import { Link, useNavigate } from "react-router-dom";
-// import { BASE_URL } from "../config";
+import { BASE_URL } from "../config";
 const Signin = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ const Signin = () => {
     e.preventDefault();
     try{
       setLoading(true);
-    const res = await fetch(`http://localhost:4000/api/auth/signin`, {
+    const res = await fetch(`${BASE_URL}/api/auth/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const Signin = () => {
     } 
     setLoading(false);
     setError(null);
-    navigate("/signin");
+    navigate("/");
     }catch(err){
       setLoading(false);
       setError(err.message);
@@ -56,7 +56,7 @@ const Signin = () => {
           <button type="submit" disabled = {loading} >{loading ? 'Loading': 'Sign in'}</button>
         </div>
       </form>
-      <Link to="/signup" className="link">Don't have an account? Signup</Link>
+      <Link to="/signup" className="link">Dont have an account? Signup</Link>
       {error && <p className="error">{error}</p>}
     </div>
   );

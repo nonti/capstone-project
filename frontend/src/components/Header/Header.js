@@ -89,10 +89,14 @@ const Header = () => {
     setIsLoginModalOpen(false);
   };
 
+  
   const handleBecomeHostClick = () => {
     setIsLoginModalOpen(true);
   };
 
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
   const isResultPage = locationPath.includes("/search-standard");
 
   return (
@@ -114,7 +118,7 @@ const Header = () => {
             <div className="search-bar">
               <div className="search-bar-text">{isResultPage ? (location === 'All' ? 'All locations': location): 'Anywhere'}</div>
               <div className="search-bar-text">{isResultPage ? (checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`: 'Add dates') : 'Any week'}</div>
-              <div className="search-bar-text2">  {guestCount > 1 ? '' : guestCount }Guests</div>
+              <div className="search-bar-text2">  {guestCount > 1 ? '' : guestCount } {guestCount} Guests</div>
               <div className="search-icon-div">
                 <SearchRoundedIcon className="search-icon" />
               </div>
@@ -128,9 +132,9 @@ const Header = () => {
           <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
             <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
           </div>
-          <div className="profile-div">
-            <MenuRoundedIcon />
-            <AccountCircleIcon />
+          <div className="profile-div">            
+            <MenuRoundedIcon />       
+            <AccountCircleIcon onClick={openLoginModal} />
           </div>
         </div>
       </div>

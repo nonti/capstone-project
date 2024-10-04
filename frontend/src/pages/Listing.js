@@ -1,169 +1,232 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import BookingWidget from "./BookingWidget";
-import './Listing.css';
+import React from "react";
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import "./Listing.css";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import YardOutlinedIcon from "@mui/icons-material/YardOutlined";
+import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";
+import AdjustOutlinedIcon from "@mui/icons-material/AdjustOutlined";
+import AirOutlinedIcon from "@mui/icons-material/AirOutlined";
+import KitchenOutlinedIcon from "@mui/icons-material/KitchenOutlined";
+import CountertopsOutlinedIcon from "@mui/icons-material/CountertopsOutlined";
+import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
+import LocalLaundryServiceOutlinedIcon from "@mui/icons-material/LocalLaundryServiceOutlined";
+import CameraIndoorOutlinedIcon from "@mui/icons-material/CameraIndoorOutlined";
+import DirectionsBikeOutlinedIcon from "@mui/icons-material/DirectionsBikeOutlined";
+import { Button } from "@mui/material";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
+import DoorFrontOutlinedIcon from "@mui/icons-material/DoorFrontOutlined";
+import EventBusyOutlinedIcon from "@mui/icons-material/EventBusyOutlined";
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import "react-dates/initialize";
+import { DateRangePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
 const Listing = () => {
-  const { id } = useParams();
-  const [place, setPlace] = useState(null);
-  const [showAllPhotos, setShowAllPhotos] = useState(false);
-  useEffect(() => {
-    if (!id) {
-      return;
+  // const [startDate, endDate] = useState()
+  const state = {
+    startDate: null,
+    endDate: null,
+    endDateFormatted: null,
+    startDateFormatted: null,
+  };
+  const handleDateChange = (startDate, endDate) => {
+    this.setState(() => ({
+      endDate,
+      startDate,
+    }));
+    if (startDate != null) {
+      this.setState(() => ({
+        startDateFormatted: startDate.format("D-MM-Y"),
+      }));
     }
-    axios.get(`/places/${id}`).then((response) => setPlace(response.data));
-  }, [id]);
-  if (!place) return "";
-  
-  if (showAllPhotos) {
-    return (
-      <div className="absolute inset-0 bg-black  text-white min-h-screen">
-        <div className="bg-black p-8 grid gap-4">
-          <div>
-            <h2 className="text-3xl mr-48">Photos of {place.title}</h2>
-            <button
-              onClick={() => setShowAllPhotos(false)}
-              className="flex right-12 top-8 gap-1 py-2 px-4 rounded-2xl fixed shadow shadow-black bg-white text-black"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
-                />
-              </svg>
-              Close photo
-            </button>
-          </div>
-          {place?.photos?.length > 0 &&
-            place.photos.map((photo) => (
-              <div key={photo}>
-                <img src={"http://localhost:4001/uploads/" + photo} alt=""/>
-              </div>
-            ))}
-        </div>
-      </div>
-    );
+    if (endDate != null) {
+      this.setState(() => ({
+        endDateFormatted: endDate.format("D-MM-Y"),
+      }));
+    }
   }
-
   return (
-    <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8">
-      <h1 className="text-3xl">{place.title}</h1>
-      <Link
-        className="flex gap-1 my-3 font-semibold underline"
-        target="_blank"
-        href={"https://maps.google.com/?q=" + place.address}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-          />
-        </svg>
-
-        {place.address}
-      </Link>
-      <div className="relative">
-        <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden">
-          <div>
-            {place.photos?.[0] && (
-              <div>
-                <img
-                  className="aspect-square cursor-pointer object-cover"
-                  src={"http://localhost:4001/uploads/" + place.photos[0]}
-                  alt=""
-                  onClick={()=> setShowAllPhotos(true)}
-                />
-              </div>
-            )}
+    <>
+      <div className="listng-container">
+        <h1 className="listing-title">title</h1>
+        <div className="reviews">
+          <div className="rating">
+            <StarBorderIcon /> <span>5.0</span>*<p>7 reviews * </p>
+            <p>Boudeex, France</p>
           </div>
-          <div className="grid">
-            {place.photos?.[1] && (
-              <img
-                className="aspect-square cursor-pointer object-cover"
-                src={"http://localhost:4001/uploads/" + place.photos[1]}
-                alt=""
-                onClick={()=> setShowAllPhotos(true)}
-              />
-            )}
-            <div className="overflow-hidden">
-              {place.photos?.[2] && (
-                <img
-                  className="aspect-square cursor-pointer object-cover relative top-2"
-                  src={"http://localhost:4001/uploads/" + place.photos[2]}
-                  alt=""
-                  onClick={()=> setShowAllPhotos(true)}
-                />
-              )}
+          <div className="share-save">
+            <IosShareIcon /> <span>Share</span>
+            <FavoriteBorderIcon /> <span>Save</span>
+          </div>
+        </div>
+        <div class="image-grid">
+          <div class="item item1">
+            <img
+              className="image"
+              src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_640.jpg"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              className="image"
+              src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_640.jpg"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              className="image"
+              src="https://cdn.pixabay.com/photo/2017/05/08/13/15/spring-bird-2295434_1280.jpg"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              className="image"
+              src="https://i0.wp.com/picjumbo.com/wp-content/uploads/tropical-beach-free-image.jpeg?w=600&quality=80"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              className="image"
+              src="https://i.pinimg.com/736x/8b/9c/d1/8b9cd167c0366c0e24a9ef9b82b38784.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <section>
+          <div className="listing place">South africa</div>
+          <div className="room-info">
+            <p>2 guests</p> .<p>1 bedroom</p> .<p>2 bathroom</p> .
+          </div>
+          <div className="user-info">
+            <img src="" alt="user profile" />
+          </div>
+        </section>
+        <hr />
+        <section className="listing-info2">
+          <div className="listing-info2-title">
+            <HomeOutlinedIcon />
+            <div>
+              <span>Entire Home</span>
+              <span className="listing-info2-text">
+                You'll have the apartment to yourself
+              </span>
             </div>
           </div>
-        </div>
-        <button
-          onClick={() => setShowAllPhotos(true)}
-          className="flex gap-1 absolute bottom-2 right-2 py-2 px-4 bg-white rounded-3xl shadow-md shadow-gray-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="size-6"
-          >
-            <path
-              fillRule="evenodd"
-              d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Show more photos
-        </button>
+          <div className="listing-info2-title">
+            <AutoAwesomeOutlinedIcon />
+            <div>
+              <span>Enhanced Clean</span>
+              <span className="listing-info2-text">
+                This Host commited to Airbnb'5 step enhance cleaning process.{" "}
+                <strong>Show more</strong>
+              </span>
+            </div>
+          </div>
+          <div className="listing-info2-title">
+            <DoorFrontOutlinedIcon />
+            <div>
+              <span>Self check-in</span>
+              <span className="listing-info2-text">
+                Check yourself in with the key
+              </span>
+            </div>
+          </div>
+          <div className="listing-info2-title">
+            <EventBusyOutlinedIcon />
+            <span className="free">
+              <strong>Free cancellation before 14 Feb</strong>
+            </span>
+          </div>
+        </section>
+        <hr />
+
+        <section className="description">
+          BlackBrick Sandton’s Studio is the ideal option for business travelers
+          <br /> and anyone looking for a weekend getaway or a place they can
+          call their home away from home.
+          <div>
+            <a href="#fds">
+              Show more <KeyboardArrowRightOutlinedIcon className="icon" />
+            </a>
+          </div>
+        </section>
+        <hr />
+        <section className="sleep">
+          <h3>Where you'll sleep</h3>
+
+          <img
+            src="https://a0.muscache.com/im/pictures/hosting/Hosting-1209497090243655715/original/d0250c51-6049-4663-a93d-c6fd628f2bc8.jpeg?im_w=1200"
+            alt=""
+          />
+          <p>
+            <strong>Bedroon</strong>
+          </p>
+          <p>1 queen bed</p>
+        </section>
+        <section >
+          <div className="offers">
+          <div className="amenities">
+            
+              <span>
+                <YardOutlinedIcon className='icons-amenities'/> Garden view
+              </span>
+              <span>
+                <WifiOutlinedIcon className='icons-amenities'/> Wifi
+              </span>
+               <span><AdjustOutlinedIcon className='icons-amenities'/>Free washer -in building</span>
+              <span><AirOutlinedIcon className='icons-amenities'/>Central air conditioning</span>
+              <span>
+                <KitchenOutlinedIcon className='icons-amenities'/> Refridgirator
+              </span>
+          </div>
+          <div className="amenities">
+              <span>
+                <CountertopsOutlinedIcon className='icons-amenities'/>
+                Kitchen
+              </span>
+              <span>
+                <PetsOutlinedIcon className='icons-amenities'/> Pets allowed
+              </span>
+              <span>
+                <LocalLaundryServiceOutlinedIcon className='icons-amenities'/> Dryer
+              </span>
+              <span>
+                <CameraIndoorOutlinedIcon className='icons-amenities'/> Security
+              </span>
+              <span>
+                <DirectionsBikeOutlinedIcon className='icons-amenities'/> Bicycle
+              </span>
+          </div>
+          </div>
+          <Button className='show' variant="outlined">Show all 37 amenities</Button>
+        </section>
+        <hr />
+        <section>
+          <h1>7 nights in New York</h1>
+          date range needs to be implemented
+          <DateRangePicker
+          startDate={state.startDate}
+          startDateId="start_date_id"
+          endDate={state.endDate}
+          endDateId="end_date_id"
+          onDatesChange={({ startDate, endDate }) =>
+            handleDateChange(startDate, endDate)
+          }
+          focusedInput={state.focusedInput}
+          onFocusChange={(focusedInput) => this.setState({ focusedInput })}
+        />
+
+        </section>
       </div>
-      
-      <div className="mt-8 mb-8 gap-8 grid grid-cols-1 md:grid-cols-[2fr_1fr]">
-      
-        <div>
-        <div className="my-4">
-        <h2 className="semi-bold text-2xl">Description</h2>
-        {place.description}
-      </div>
-          Check-in: {place.checkIn}
-          <br />
-          Check-out: {place.checkOut}
-          <br />
-          Max number of guests: {place.maxGuests}
-          
-        </div>
-        <div>
-          <BookingWidget place={place}/>
-        </div>
-      </div>
-      <div className="bg-white -mx-8 py-8 px-8 border-t">
-      <div>
-      <h2 className="semi-bold text-2xl">Extra info</h2>
-      </div>
-      <div className="mb-4 mt-2 text-sm text-gray-700 leading-5">{place.extraInfo}</div>
-      </div>
-     
-    </div>
+    </>
   );
 };
 

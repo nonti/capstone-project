@@ -16,6 +16,7 @@ const Reservations = () => {
       <div className="table-content">
           {loading ? (
             <div>Loading...</div>
+
           ) : (
             <>
               <h1>My Reservations</h1>
@@ -50,4 +51,4 @@ const Reservations = () => {
   )
 }
 
-export default Reservations
+export default Reservations;

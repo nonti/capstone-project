@@ -1,138 +1,194 @@
-/* Global Styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* Main Container */
-.absolute {
-  position: absolute;
-  inset: 0;
-}
-
-/* Modal Styles */
-.bg-black {
-  background-color: black;
-}
-
-.text-white {
-  color: white;
-}
-
-.min-h-screen {
-  min-height: 100vh;
-}
-
-/* Header Styles */
-h1, h2 {
-  margin: 0;
-}
-
-h1 {
-  font-size: 2rem;
-  color: #333;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Button Styles */
-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  border-radius: 0.5rem;
-}
-
-.flex {
+.listing-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto; 
+  padding: 0 20px; 
+  width: 100%; 
+  max-width: 1200px; 
+  box-sizing: border-box; 
+  background-color: #fff;
 }
 
-.gap-1 {
-  gap: 0.25rem;
+h1{
+  text-align: left;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  padding: 0 20px 0 100px;
 }
 
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.reviews {
+  display: flex;
+  gap: 41x;
+  padding: 20px 0 0 100px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.rating {
+  display: flex;
+  gap: 5px;
+  padding: 0 100px 0 0;
 }
 
-.bg-white {
-  background-color: white;
+.share-save {
+  display: flex;
+  align-items: flex-end;
+  padding: 0px 20px 0px 0px;
+  margin: 0px 80px 10px 75px;
+  gap: 5px;
+  text-decoration: underline;
 }
 
-.rounded-2xl {
-  border-radius: 1rem;
-}
-
-.shadow {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Image Styles */
-.img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-}
-
-.aspect-square {
-  aspect-ratio: 1 / 1;
-}
-
-/* Grid Styles */
-.grid {
+.image-grid {
   display: grid;
+  grid-template-columns: 800px 450px 450px;
+  grid-template-rows: 350px 350px;
+  grid-gap: 10px;
+  width: 100%;
+  padding: 0 80px 0 95px;
+  border-radius: 20px;  
 }
 
-.grid-cols-[2fr_1fr] {
-  grid-template-columns: 2fr 1fr;
+.item {
+  border-radius: 20px;
+}
+.item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 19px;
 }
 
-.rounded-3xl {
-  border-radius: 1.5rem;
+.item1 {
+  grid-row: 1/3;
+}
+.item2 {
+  grid-column: 2/4;
 }
 
-/* Additional Info */
-.mb-4 {
-  margin-bottom: 1rem;
+section {
+  display: flex;
+  width: 75%;
+  padding: 55px 100px;
+  flex-direction: column;
+  background-color: #fff;
 }
 
-.mt-8 {
-  margin-top: 2rem;
+
+.listing-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 50px 100px 0 100px;
+  margin-bottom: -25px 0px;
+  background-color: #fff;
 }
 
-.text-sm {
-  font-size: 0.875rem;
+.listing-info-top{
+  display: flex;
+  flex-direction: column;
 }
 
-.text-gray-700 {
-  color: #4a5568;
+.listing-info2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 100px;
+  gap: 10px;
 }
 
-.leading-5 {
-  line-height: 1.25rem;
+
+.listing-info2-title{
+  display: flex;
+  align-items: flex-start;
 }
 
-/* Button Hover Effects */
-button:hover {
-  background-color: #f0f0f0;
+.listing-info2-title span {
+  display: block;
+  margin-left: 10px; 
+}
+.listing-info2-text {
+  color: gray;
+}
+.listing-place {
+  padding: -85px 10px 0px 0px;
+  marign: 25px 10px 0px 0px;
+}
+.room-info {
+  display: flex;
+  gap: 2px;
+  color: #484848;
+  padding: -45px 100px 20px 0;
 }
 
-.shadow-md {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+strong {
+  color: #000;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
 }
 
-/* Responsive Styles */
-@media (min-width: 768px) {
-  .grid-cols-[2fr_1fr] {
-    grid-template-columns: 2fr 1fr;
-  }
+.user-info-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;;
+}
+
+.description {
+  padding: 25px 100px ;
+}
+
+a {
+  color: #000;
+  gap: 2px;
+  padding: 15px 10px ;
+}
+  
+.icon {
+  font-size: 1.5rem;
+}
+
+.sleep  img{
+  width: 310px;
+  height: 212px;
+  border-radius: 16px;
+}
+
+.offers {
+  display: flex;
+  flex-flow:  nowrap;
+  gap: 10px;
+}
+
+.amenities > span{
+  width: 230px;
+  display: block;
+  padding: 10px; 
+}
+
+.amenities> span {
+  display: flex;
+  
+}
+
+.icons-amenities   {
+  margin-right: 4px
+}
+
+.show button {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #000;
+}
+
+.date-range {
+  display: flex;
+  flex-direction: column;
 }

@@ -11,6 +11,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import axios from "axios";
 import Amenities from "./Amenities";
 import PhotoUploader from "./PhotoUploader";
+
 const CreateListingForm = () => {
   const { id } = useParams();
   const [listing, setListing] = useState("");

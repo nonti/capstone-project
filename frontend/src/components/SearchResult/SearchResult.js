@@ -11,7 +11,7 @@ const SearchResult = ({image, location, title, description, price, star, total})
       <div className='search-result-info'>
         <div className='search-result-info-top'>
         <p>{location}</p>
-        <Link to={`/listing-info/${title}`} className='search-result-title'>
+        <Link to={'/listing-info'} className='search-result-title'>
         <h3>{title}</h3>
         </Link>
           

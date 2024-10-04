@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import "./Inspiration.css";
+import "../styles/Inspiration.css";
 const Inspiration = () => {
   const [activeTab, setActiveTab] = useState('Lake');
 

@@ -1,11 +1,12 @@
-import React from 'react'
-import './Home.css'
-import Banner from '../components/Banner/Banner'
-import CardTiles from '../components/Card/CardTiles'
-import Expriences from '../components/Experiences/Expriences'
-import GiftCard from '../components/GiftCard/GiftCard'
-import Host from '../components/Host/Host'
-import Inspiration from '../components/Inspiration/Inspiration'
+import React from 'react';
+import '../styles/Home.css';
+import Banner from '../components/Banner';
+import CardTiles from '../components/CardTiles';
+import Expriences from '../components/Expriences';
+import GiftCard from '../components/GiftCard';
+import Host from '../components/Host';
+import Inspiration from '../components/Inspiration';
+import Footer from '../components/Footer';
 const Home = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Home = () => {
       <GiftCard/>
       <Host/>
       <Inspiration/>
+      <Footer/>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import './GiftCard.css'
-import gift_card from '../../assets/images/cards.png'
+import '../styles/GiftCard.css'
+import gift_card from '../assets/images/cards.png'
 const GiftCard = () => {
   return (
     <div>

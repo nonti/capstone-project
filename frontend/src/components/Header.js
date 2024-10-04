@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import {useLocation} from "react-router-dom";
-import "./Header.css";
-import logo from "../../assets/svg/logo_s.svg";
-import logo_s from "../../assets/svg/airbnb.svg";
+import "../styles/Header.css";
+import logo from "../assets/svg/logo_s.svg";
+import logo_s from "../assets/svg/airbnb.svg";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import LanguageIcon from "@mui/icons-material/Language";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -13,8 +13,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import Login from "../../pages/Login";
-import Modal from "react-modal";
+
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,7 +24,6 @@ const Header = () => {
   const [showGuestPopup, setShowGuestPopup] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const  locationPath = useLocation().pathname;
 
   const locations = [
@@ -85,62 +83,71 @@ const Header = () => {
     }
   };
   
-  const closeLoginModal = () => {
-    setIsLoginModalOpen(false);
-  };
-
-  
-  const handleBecomeHostClick = () => {
-    setIsLoginModalOpen(true);
-  };
-
-  const openLoginModal = () => {
-    setIsLoginModalOpen(true);
-  };
+  const isSignUpOrSignIn = locationPath === "/signup" || locationPath === "/signin";
   const isResultPage = locationPath.includes("/search-standard");
 
   return (
     <>
       <div className={`header ${isScrolled ? 'scrolled' : ''}`} style={{ backgroundColor: isResultPage ? 'white' : '' }}>
         <img
-          src={isResultPage ? logo_s :(isScrolled ? logo_s : logo)}
+          src={isSignUpOrSignIn || isResultPage ? logo_s : isScrolled ? logo_s : logo}
           alt="logo"
           className="header-logo"
         />
-        {!isResultPage && !isScrolled ? (
-          <div className="header-text">
-            <p>Places to stay</p>
-            <p>Experiences</p>
-            <p>Online Experiences</p>
-          </div>
-        ) : (
-          <div className="search-bar-container">
-            <div className="search-bar">
-              <div className="search-bar-text">{isResultPage ? (location === 'All' ? 'All locations': location): 'Anywhere'}</div>
-              <div className="search-bar-text">{isResultPage ? (checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`: 'Add dates') : 'Any week'}</div>
-              <div className="search-bar-text2">  {guestCount > 1 ? '' : guestCount } {guestCount} Guests</div>
-              <div className="search-icon-div">
-                <SearchRoundedIcon className="search-icon" />
+        {!isSignUpOrSignIn && (
+          <>
+            {!isResultPage && !isScrolled && (
+              <div className="header-text">
+                <p>Places to stay</p>
+                <p>Experiences</p>
+                <p>Online Experiences</p>
               </div>
+            )}
+
+            {/* Search bar container should be hidden on sign-up/sign-in pages */}
+            {(!isSignUpOrSignIn && !isResultPage && isScrolled) && (
+              <div className="search-bar-container">
+                <div className="search-bar">
+                  <div className="search-bar-text">
+                    {isResultPage ? (location === "All" ? "All locations" : location) : "Anywhere"}
+                  </div>
+                  <div className="search-bar-text">
+                    {isResultPage
+                      ? checkInDate && checkOutDate
+                        ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`
+                        : "Add dates"
+                      : "Any week"}
+                  </div>
+                  <div className="search-bar-text2">
+                    {guestCount > 1 ? `${guestCount} Guests` : "Add guests"}
+                  </div>
+                  <div className="search-icon-div">
+                    <SearchRoundedIcon className="search-icon" />
+                  </div>
+                </div>
+              </div>
+            )}
+            </>
+        )}
+        {!isSignUpOrSignIn && (
+          <div className="profile-container">
+            <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
+              Become a host
+            </div>
+            <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
+              <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
+            </div>
+            <div className="profile-div">            
+              <MenuRoundedIcon />       
+              <AccountCircleIcon  />
             </div>
           </div>
         )}
-        <div className="profile-container">
-          <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} onClick={handleBecomeHostClick}>
-            Become a host
-          </div>
-          <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
-            <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
-          </div>
-          <div className="profile-div">            
-            <MenuRoundedIcon />       
-            <AccountCircleIcon onClick={openLoginModal} />
-          </div>
-        </div>
       </div>
+      
 
       {/* SearchBox remains hidden on scroll */}
-      {!isResultPage && !isScrolled && (
+      {!isResultPage && !isScrolled && !isSignUpOrSignIn && (
         <div className="header-bottom">
           <div className="header-search">
             <div className="search-where">
@@ -219,21 +226,7 @@ const Header = () => {
         </div>
       )}
 
-      {/* Login Modal */}
-      {isLoginModalOpen && (
-        <Modal
-        isOpen={isLoginModalOpen}
-        onRequestClose={closeLoginModal}
-        contentLabel="Login Modal"
-        className="login-modal"
-        overlayClassName="login-modal-overlay"
-      >
-        <button className="close-modal" onClick={closeLoginModal}>
-          X
-        </button>
-        <Login /> 
-      </Modal>
-      )}
+   
     </>
   );
 };

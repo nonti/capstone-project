@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AdminPage.css";
+import "../styles/AdminPage.css";
 import { Button } from "@mui/material";
 import Reservations from "./Reservations";
 import CreateListingForm from "./CreateListingForm";

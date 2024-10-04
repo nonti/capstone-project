@@ -1,7 +1,7 @@
 import React from "react";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import "./Listing.css";
+import "../styles/Listing.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import YardOutlinedIcon from "@mui/icons-material/YardOutlined";
 import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";

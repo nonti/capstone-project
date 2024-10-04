@@ -243,7 +243,7 @@ outline: none;
 color: white;
 cursor: pointer;
 padding: 0.6rem;
-margin-left: 9.5rem;
+margin-left: 2rem;
 margin-top: 0.88rem;
 margin-bottom: 0.6rem;
 
@@ -271,6 +271,7 @@ outline: none;
 .border-divider {
   border-bottom: 1px solid var(--grey);
 }
+
 .search-bar-container {
   display: flex;
   justify-content: flex-start; 

@@ -113,8 +113,8 @@ const Header = () => {
           <div className="search-bar-container">
             <div className="search-bar">
               <div className="search-bar-text">{isResultPage ? (location === 'All' ? 'All locations': location): 'Anywhere'}</div>
-              <div className="search-bar-text">{isResultPage ? (checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`: 'Add dates') : 'Add dates'}</div>
-              <div className="search-bar-text2"> {guestCount} Guest{guestCount > 1 ? 's' : ''}</div>
+              <div className="search-bar-text">{isResultPage ? (checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`: 'Add dates') : 'Any week'}</div>
+              <div className="search-bar-text2">  {guestCount > 1 ? '' : guestCount }Guests</div>
               <div className="search-icon-div">
                 <SearchRoundedIcon className="search-icon" />
               </div>
@@ -140,10 +140,10 @@ const Header = () => {
         <div className="header-bottom">
           <div className="header-search">
             <div className="search-where">
-              <div>Hotels</div>
+              <div>Location</div>
               <div className="search-input">
                 <select onChange={(e) => setLocation(e.target.value)} value={location}>
-                  <option disabled>Location</option>
+                  <option >Where are you going?</option>
                   {locations.map((option, index) => (
                     <option key={index} value={option}>{option}</option>
                   ))}
@@ -176,13 +176,13 @@ const Header = () => {
             </div>
             <div className="border-divider"></div>
             <div className="search-who">
-              <p>Guests</p>
-              <button
+              <div>Add Guests</div>
+              <div
                 className="search-button"
                 onClick={() => setShowGuestPopup(true)}
               >
-                {guestCount > 0 ? `${guestCount} Guest` : `${guestCount} Guest`}
-              </button>
+                {guestCount > 0 ? `Add guests` : `${guestCount} Guest`}
+              </div>
             </div>
             {showGuestPopup && (
               <div className="guest-popup" ref={popupRef}>

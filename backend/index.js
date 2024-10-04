@@ -20,10 +20,6 @@ app.use(cors(
 ));
 
 
-//Routes
-app.use("/api/auth", authRoutes);
-
-
 app.listen(4000, () => {
   console.log(`Server running on port ${PORT}`);
 })
@@ -35,3 +31,18 @@ mongoose.connect(process.env.MONGODB_URI, {
   console.log(err);
 })
 
+
+//Routes
+app.use("/api/auth", authRoutes);
+
+
+//Middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Something went wrong. Please try again!'
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+     message
+    });
+});

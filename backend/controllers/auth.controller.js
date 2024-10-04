@@ -12,7 +12,7 @@ export const signup = async (req,res,next) => {
     user
   });
   }catch(e) {
-    res.status(500).json(e.message);
+   next(e);
   }
   
 }

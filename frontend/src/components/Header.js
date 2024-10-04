@@ -12,7 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
@@ -25,7 +26,7 @@ const Header = () => {
   const popupRef = useRef(null);
   const navigate = useNavigate();
   const  locationPath = useLocation().pathname;
-
+  const { currentUser } = useSelector((state) => state.user);
   const locations = [
     "All",
     "Pretoria",
@@ -89,11 +90,13 @@ const Header = () => {
   return (
     <>
       <div className={`header ${isScrolled ? 'scrolled' : ''}`} style={{ backgroundColor: isResultPage ? 'white' : '' }}>
+        <Link to="/" className="header-link">
         <img
           src={isSignUpOrSignIn || isResultPage ? logo_s : isScrolled ? logo_s : logo}
           alt="logo"
           className="header-logo"
         />
+        </Link>
         {!isSignUpOrSignIn && (
           <>
             {!isResultPage && !isScrolled && (
@@ -131,15 +134,43 @@ const Header = () => {
         )}
         {!isSignUpOrSignIn && (
           <div className="profile-container">
-            <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
+            <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} >
               Become a host
             </div>
             <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
               <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
             </div>
-            <div className="profile-div">            
-              <MenuRoundedIcon />       
-              <AccountCircleIcon  />
+            <div className="profile-div">    
+              <div className="dropdown">        
+              <MenuRoundedIcon className="dropbtn"/>       
+                <div className="dropdown-content">
+                {!currentUser ? (
+              <>
+                <span onClick={() => navigate('/signin')} className='link'>Sign In</span>
+                <span onClick={() => navigate('/signup')} className='link'>Sign Up</span>
+              </>
+            ) : (
+              <>
+                
+                {/* <div className='dropdown-content'> */}
+                  {/* Show different options based on user role */}
+                  {currentUser.role === 'host' ? (
+                    <>
+                      <span onClick={() => navigate('/reservations')} className='link'>Reservations</span>
+                      <span onClick={() => navigate('/bookings')} className='link'>Bookings</span>
+                    </>
+                  ) : (
+                    <>
+                      <span onClick={() => navigate('/reservations')} className='link'>View Reservations</span>
+                    </>
+                  )}
+                  <span className='link'>Signout</span>
+                {/* </div> */}
+              </>
+            )}
+                  </div>
+              </div>
+              { currentUser ? <span className='acc-name'><AccountCircleIcon/> {currentUser.username}</span> :(<AccountCircleIcon />)}
             </div>
           </div>
         )}

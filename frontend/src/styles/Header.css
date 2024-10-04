@@ -86,8 +86,15 @@
   border-radius: 2rem;
   cursor: pointer;
   font-size: 0.9rem;
+  text-decoration: none;
 }
 
+
+.host-link {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
 .lang-icon {
   marign: 0 0 0 125px;
   padidng: 0 0 0 125px;
@@ -354,4 +361,10 @@ outline: none;
 .link {
   text-decoration: none;
   color: #fff;
+}
+
+.acc-name {
+  font-weight: 600;
+  padding: 5px;
+  margin-right: 1rem;
 }

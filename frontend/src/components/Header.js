@@ -13,10 +13,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import user_img from '../assets/images/Jane.png';
-import host_img from '../assets/images/jon.png';
-
+import { useSelector, useDispatch } from "react-redux";
+import { signOutFailure, signOutStart, signOutSuccess } from "../redux/user/userSlice";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [location, setLocation] = useState("Location");
@@ -27,6 +25,7 @@ const Header = () => {
   const popupRef = useRef(null);
   const navigate = useNavigate();
   const  locationPath = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const locations = [
     "All",
@@ -61,6 +60,22 @@ const Header = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutStart());
+      const res = await fetch(`http://localhost:4000/api/user/signOut`)
+      const data = await res.json();
+      if(data.success === false){
+        dispatch(signOutSuccess());
+        return;
+      } 
+      dispatch(signOutFailure());
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+  
+
   useEffect(() => {
     if (showGuestPopup) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -85,13 +100,14 @@ const Header = () => {
     }
   };
   
-  const isSignUpOrSignIn = locationPath === "/signup" || locationPath === "/signin";
   const isProfilePage = locationPath === "/profile";
   const isResultPage = locationPath.includes("/search-standard");
+  const isSignUpOrSignIn = locationPath === "/signup" || locationPath === "/signin";
+
 
   return (
     <>
-      <div className={`header ${isScrolled ? 'scrolled' : ''}`} style={{ backgroundColor: isResultPage ? 'white' : '' }}>
+      <div className={`header ${isScrolled ? 'scrolled' : ''} `} style={{ backgroundColor: isResultPage ? 'white' : '' }}>
         <Link to="/" className="header-link">
         <img
           src={isSignUpOrSignIn || isResultPage ? logo_s : isScrolled ? logo_s : logo}
@@ -99,10 +115,10 @@ const Header = () => {
           className="header-logo"
         />
         </Link>
-        {isProfilePage ? null : (
+        
           <>
-            {!isSignUpOrSignIn && !isResultPage && !isProfilePage && (
-              <div className="header-text">
+            {!isSignUpOrSignIn && !isResultPage &&  (
+              <div className="header-text" style={{ display: isScrolled ? 'none' : 'flex' }}>
                 <p>Places to stay</p>
                 <p>Experiences</p>
                 <p>Online Experiences</p>
@@ -111,7 +127,7 @@ const Header = () => {
 
             {/* Search bar container should be hidden on sign-up/sign-in pages */}
             {(!isSignUpOrSignIn && !isResultPage && isScrolled) && (
-              <div className="search-bar-container">
+              <div className={`search-bar-container ${isScrolled ? 'visible' : 'hidden'}`}>
                 <div className="search-bar">
                   <div className="search-bar-text">
                     {isResultPage ? (location === "All" ? "All locations" : location) : "Anywhere"}
@@ -133,32 +149,28 @@ const Header = () => {
               </div>
             )}
           </>
-        )}
+      
 
         {/* Profile section */}
         {!isSignUpOrSignIn && (
           <div className="profile-container">
-            {currentUser ? (
-              <>
-                <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
-                  {currentUser.role === 'host' && (
-                    <>
-                      <span host-user-img>
-                        <span className="host-text">{currentUser.username}</span>
-                        <img src={host_img} alt='host' className="host-img" />
-                      </span>
-                    </>
-                  )}
-                </div>
-              </>
-            ) : (
-              <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
-                Become a host
-              </div>
-            )}
+           {currentUser ? (
+    <>
+      <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
+       
+            <span className="host-text">{currentUser.username}</span>
+      </div>
+    </>
+  ) : (
+    <>
+    <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
+      <Link to='/signin' className="host-link">Become a host</Link>
+    </div>
             <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
               <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
             </div>
+            </>
+  )}
 
             <div className="profile-div">
               <div className="dropdown">
@@ -181,12 +193,12 @@ const Header = () => {
                           <span onClick={() => navigate('/reservations')} className='link'>View Reservations</span>
                         </>
                       )}
-                      <span className='link'>Signout</span>
+                      <span className='link' onClick={handleSignOut}>Signout</span>
                     </>
                   )}
                 </div>
               </div>
-              {currentUser ? <span className='acc-name'><img src={user_img} className="user-img" alt="profile pic" /> {currentUser.username}</span> : (<AccountCircleIcon />)}
+              {currentUser ? <span className='acc-name'> <AccountCircleIcon /></span> : (<AccountCircleIcon />)}
             </div>
           </div>
         )}
@@ -275,6 +287,6 @@ const Header = () => {
    
     </>
   );
-};
+}
 
 export default Header;

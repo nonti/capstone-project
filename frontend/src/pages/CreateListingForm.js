@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../styles/Listing.css'
 import { Navigate, useParams } from "react-router-dom";
 import BedroomChildOutlinedIcon from "@mui/icons-material/BedroomChildOutlined";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";

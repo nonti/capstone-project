@@ -7,11 +7,11 @@
 }
 
 
-.home-background {
+ .home-background {
   background: #000;
   background-size: cover;
   height: 100vh; 
-}
+} 
 
 .white-background {
   background-color: white;

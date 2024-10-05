@@ -19,9 +19,6 @@ const Profile = () => {
         <div className="form-group">
           <input type="password" placeholder="password" name="password"  />
         </div>
-        <div className="form-group">
-          <input type="email" placeholder="email" name="email" />
-        </div>
         <div className="form-group-btn">
           <button type="submi">Update</button>
         </div>

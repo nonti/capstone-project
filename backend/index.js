@@ -2,11 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 dotenv.config();
 import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
 
-
-const PORT = 4000;
+const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
@@ -18,9 +19,10 @@ app.use(cors(
     credentials: true,
   }
 ));
+app.use(cookieParser());
 
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })
 
@@ -34,6 +36,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 //Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 
 //Middleware

@@ -86,6 +86,7 @@ const Header = () => {
   };
   
   const isSignUpOrSignIn = locationPath === "/signup" || locationPath === "/signin";
+  const isProfilePage = locationPath === "/profile";
   const isResultPage = locationPath.includes("/search-standard");
 
   return (
@@ -98,9 +99,9 @@ const Header = () => {
           className="header-logo"
         />
         </Link>
-        {!isSignUpOrSignIn && (
+        {isProfilePage ? null : (
           <>
-            {!isResultPage && !isScrolled && (
+            {!isSignUpOrSignIn && !isResultPage && !isProfilePage && (
               <div className="header-text">
                 <p>Places to stay</p>
                 <p>Experiences</p>
@@ -131,71 +132,68 @@ const Header = () => {
                 </div>
               </div>
             )}
-            </>
+          </>
         )}
+
+        {/* Profile section */}
         {!isSignUpOrSignIn && (
           <div className="profile-container">
-          {currentUser ? (
-            <>
-              <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} >
-                {currentUser.role === 'host' && (
-                  <>
-                  <span host-user-img> 
-                  <span className="host-text">{currentUser.username}</span>
-                    <img src={host_img} alt='host' className="host-img" />
-                    </span>
-                  </>
-                )}
-              </div>
-            </>
-          ) : (
-            <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} >
-              Become a host
-            </div>
-          )}
-          <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
-            <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
-          </div>
-
-            <div className="profile-div">    
-              <div className="dropdown">        
-              <MenuRoundedIcon className="dropbtn"/>       
-                <div className="dropdown-content">
-                {!currentUser ? (
+            {currentUser ? (
               <>
-                <span onClick={() => navigate('/signin')} className='link'>Sign In</span>
-                <span onClick={() => navigate('/signup')} className='link'>Sign Up</span>
+                <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
+                  {currentUser.role === 'host' && (
+                    <>
+                      <span host-user-img>
+                        <span className="host-text">{currentUser.username}</span>
+                        <img src={host_img} alt='host' className="host-img" />
+                      </span>
+                    </>
+                  )}
+                </div>
               </>
             ) : (
-              <>
-                
-                {/* <div className='dropdown-content'> */}
-                  {/* Show different options based on user role */}
-                  {currentUser.role === 'host' ? (
+              <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`}>
+                Become a host
+              </div>
+            )}
+            <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
+              <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
+            </div>
+
+            <div className="profile-div">
+              <div className="dropdown">
+                <MenuRoundedIcon className="dropbtn" />
+                <div className="dropdown-content">
+                  {!currentUser ? (
                     <>
-                      <span onClick={() => navigate('/reservations')} className='link'>Reservations</span>
-                      <span onClick={() => navigate('/bookings')} className='link'>Bookings</span>
+                      <span onClick={() => navigate('/signin')} className='link'>Sign In</span>
+                      <span onClick={() => navigate('/signup')} className='link'>Sign Up</span>
                     </>
                   ) : (
                     <>
-                      <span onClick={() => navigate('/reservations')} className='link'>View Reservations</span>
+                      {currentUser.role === 'host' ? (
+                        <>
+                          <span onClick={() => navigate('/reservations')} className='link'>Reservations</span>
+                          <span onClick={() => navigate('/bookings')} className='link'>Bookings</span>
+                        </>
+                      ) : (
+                        <>
+                          <span onClick={() => navigate('/reservations')} className='link'>View Reservations</span>
+                        </>
+                      )}
+                      <span className='link'>Signout</span>
                     </>
                   )}
-                  <span className='link'>Signout</span>
-                {/* </div> */}
-              </>
-            )}
-                  </div>
+                </div>
               </div>
-              { currentUser ? <span className='acc-name'><img src={user_img} className="user-img" alt="profile pic"/> {currentUser.username}</span>: (<AccountCircleIcon />) }
+              {currentUser ? <span className='acc-name'><img src={user_img} className="user-img" alt="profile pic" /> {currentUser.username}</span> : (<AccountCircleIcon />)}
             </div>
           </div>
         )}
       </div>
-      
 
       {/* SearchBox remains hidden on scroll */}
-      {!isResultPage && !isScrolled && !isSignUpOrSignIn && (
+      {!isResultPage && !isScrolled && !isSignUpOrSignIn &&  !isProfilePage && (
         <div className="header-bottom">
           <div className="header-search">
             <div className="search-where">

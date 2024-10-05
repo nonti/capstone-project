@@ -14,7 +14,8 @@ import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import user_img from '../assets/images/Jane.png';
+import host_img from '../assets/images/jon.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -134,12 +135,28 @@ const Header = () => {
         )}
         {!isSignUpOrSignIn && (
           <div className="profile-container">
+          {currentUser ? (
+            <>
+              <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} >
+                {currentUser.role === 'host' && (
+                  <>
+                  <span host-user-img> 
+                  <span className="host-text">{currentUser.username}</span>
+                    <img src={host_img} alt='host' className="host-img" />
+                    </span>
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
             <div className={`become-a-host ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'result-page' : ''}`} >
               Become a host
             </div>
-            <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
-              <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
-            </div>
+          )}
+          <div className={`language-icon ${isResultPage ? 'result-page' : ''}`}>
+            <LanguageIcon className={`lang-icon ${isScrolled ? 'scrolled' : ''} ${isResultPage ? 'black' : ''}`} sx={{ fontSize: "1.3rem" }} />
+          </div>
+
             <div className="profile-div">    
               <div className="dropdown">        
               <MenuRoundedIcon className="dropbtn"/>       
@@ -170,7 +187,7 @@ const Header = () => {
             )}
                   </div>
               </div>
-              { currentUser ? <span className='acc-name'><AccountCircleIcon/> {currentUser.username}</span> :(<AccountCircleIcon />)}
+              { currentUser ? <span className='acc-name'><img src={user_img} className="user-img" alt="profile pic"/> {currentUser.username}</span>: (<AccountCircleIcon />) }
             </div>
           </div>
         )}

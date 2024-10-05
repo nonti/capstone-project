@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Header from './components/Header';
 import Signin from './pages/Signin';
 import SignUp from './pages/Signup';
+import PrivateRoute from './components/PrivateRoute';
+import Profile from './components/Profile';
 // import Search from './pages/Search';
 // import CreateListing from './pages/CreateListing';
 // import Listing from './pages/Listing';
@@ -17,6 +19,9 @@ const App = () => {
         <Route path='/' element={<Home />} />  
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route element={<PrivateRoute />}>
+        <Route path='/profile' element={<Profile />} />
+        </Route> 
         {/* <Route path='/search' element={<Search />} /> */}
         {/* <Route path='/create-listing' element={<CreateListing />} />
         <Route path='/reservations' element={<Reservations />} />
